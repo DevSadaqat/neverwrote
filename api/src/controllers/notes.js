@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 //attribute shall specify which notebook it belongs to.
 //Returns the new note
 router.post('/', (req, res) => {
-  models.note.create(req.body)
+  models.Note.create(req.body)
      .then(notes => res.json(notes))
    .catch(err => res.status(422).json({ error: err.message }));
 });
