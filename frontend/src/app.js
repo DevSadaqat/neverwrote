@@ -24,7 +24,14 @@ app.use('/assets/font-awesome/fonts', express.static(
   path.dirname(require.resolve('font-awesome/fonts/FontAwesome.otf'))));
 
 // Set up the index route
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
+/*api.get('/notebooks').then((notebooks) => {
+ const initialState = combinedReducers();
+  initialState.notebooks.data = notebooks;
+  const initialStateString =
+  JSON.stringify(initialState).replace(/<\//g, "<\\/");
+*/
+
   const htmlDocument = `<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -39,12 +46,14 @@ app.get('/', (req, res) => {
       </head>
       <body>
         <div id="root"></div>
-        <script>main();</script>
+        <script>main()</script>
       </body>
     </html>`;
 
   // Respond with the complete HTML page
   res.send(htmlDocument);
+  // get data from the api
+ // }).catch(next);
 });
 
 // Catch-all for handling errors.
