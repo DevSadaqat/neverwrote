@@ -12,6 +12,14 @@
 const path = require('path');
 const express = require('express');
 const Youch = require('youch');
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const _ = require('lodash');
+const moment = require('moment');
+const api = require('./helpers/api');
+const createStore = require('./helpers/createStore');
+const Root = React.createFactory(require('./components/Root'));
+const combinedReducers = require('./reducers');
 
 // Create a new Express app
 const app = express();
@@ -25,12 +33,13 @@ app.use('/assets/font-awesome/fonts', express.static(
 
 // Set up the index route
 app.get('/', (req, res, next) => {
-/*api.get('/notebooks').then((notebooks) => {
+api.get('/notebooks').then((notebooks) => {
  const initialState = combinedReducers();
   initialState.notebooks.data = notebooks;
+  //initial state of redux store saved in a string
   const initialStateString =
   JSON.stringify(initialState).replace(/<\//g, "<\\/");
-*/
+
 
   const htmlDocument = `<!DOCTYPE html>
     <html lang="en">
@@ -46,14 +55,14 @@ app.get('/', (req, res, next) => {
       </head>
       <body>
         <div id="root"></div>
-        <script>main()</script>
+        <script>main(${initialStateString})</script>
       </body>
     </html>`;
 
   // Respond with the complete HTML page
   res.send(htmlDocument);
   // get data from the api
- // }).catch(next);
+  }).catch(next);
 });
 
 // Catch-all for handling errors.

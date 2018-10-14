@@ -19,12 +19,12 @@ class Notebook extends React.Component {
       this.setState({ editing: false });
     };
 
-   /* const saveEdit = (editedNotebook) => {
+    const saveEdit = (editedNotebook) => {
       this.props.saveNotebook(editedNotebook, (err) => {
         if(!err) closeEdit();
       });
     };
-    */
+
 
     const deleteThisNotebook = () => {
     this.props.deleteNotebook(this.props.Notebook.id);
@@ -35,7 +35,13 @@ class Notebook extends React.Component {
 
     if(this.state.editing) {
       // Render component for editing the Notebook
-
+      return (
+        <NotebookEdit
+          post={this.props.post}
+          onSave={saveEdit}
+          onCancel={closeEdit}
+        />
+      );
     }
     // Render read-only view of the Notebook
     // TODO Section 8: add code for delete

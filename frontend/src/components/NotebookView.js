@@ -22,11 +22,11 @@ const NotebookMeta = (props) => {
 };
 
 /**
- * A read-only view of a blog Notebook.
+ * A read-only view  Notebook.
  * This is a stateless functional component.
  * It takes props as its args and returns what the render method would return.
  *
- * List of props: Notebook, time, onEdit, onDelete
+ * List of props: Notebook
  */
 const NotebookView = (props) => {
   return (

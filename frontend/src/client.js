@@ -11,9 +11,9 @@ const createStore = require('./helpers/createStore');
 const Root = React.createFactory(require('./components/Root'));
 
 // Initialisation function which we will call on page load
-window.main = () => {
+window.main = (initialState) => {
   // Create root React component with Redux store
-  const store = createStore();
+  const store = createStore(initialState);
   const rootComponent = Root({ store });
 
   // Mount React root component in DOM
