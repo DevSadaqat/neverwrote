@@ -7,11 +7,7 @@ const CHANGE = 'blog-frontend/notes/CHANGE';
 const REMOVE = 'blog-frontend/notes/REMOVE';
 const take_NOTES= 'take-notes';
 
-const initialState = {
-  data: [
-
-  ]
-};
+const initialState = {data: []};
 
 // Function which takes the current data state and an action,
 // and returns a new state
@@ -71,13 +67,15 @@ reducer.changeNote = (note) => {
   return { type: CHANGE, note };
 };
 
+
+
 // Attempts to delete a note from the server and removes it from the visible
 // note list if successful
-reducer.deleteNote = (noteId) => {
+reducer.deleteNote = (id) => {
    return (dispatch) => {
-    api.delete('/notes/' + noteId).then((note) => {
+    api.delete('/notes/' + id).then((note) => {
       // deletes local note.
-      dispatch(reducer.removenote(noteId));
+      dispatch(reducer.removeNote(id));
     }).catch(() => {
       alert('Failed to delete note');
     });
@@ -90,7 +88,7 @@ reducer.saveNote = (editednote, callback) => {
   return (dispatch) => {
     api.put('/notes/' + editednote.id, editednote).then((note) => {
       // Saves local note.
-      dispatch(reducer.changenote(note));
+      dispatch(reducer.changeNote(note));
       callback();
     }).catch(() => {
       alert('Failed to save note.  Are all of the fields filled in correctly?');
@@ -102,9 +100,9 @@ reducer.saveNote = (editednote, callback) => {
 // list if successful
 reducer.createNote = (newnote, callback) => {
   return (dispatch) => {
-    api.post('/notes', newnote).then((note) => {
+    api.post('/notes', newNote).then((note) => {
       // This note is one that the store returns us! It has note id incremented to the next available id
-      dispatch(reducer.insertnotes(note));
+      dispatch(reducer.insertNotes(note));
      // callback();
     }).catch(() => {
       alert('Failed to create note. Are all of the fields filled in correctly?');
@@ -112,9 +110,15 @@ reducer.createNote = (newnote, callback) => {
   };
 };
 
+reducer.getNotes=(id)=>{
+  return (dispatch)=>{
+    api.get('/notebooks/'+id + '/notes').then((notes)=>{
+      dispatch({type: GET_NOTES,notes});
+    }).catch(err=>alert(err.message));
+  };
+};
 
-// Action creators
-/* *** TODO: Put action creators here *** */
+
 
 // Export the action creators and reducer
 module.exports = reducer;

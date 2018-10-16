@@ -106,6 +106,13 @@ reducer.createNotebook = (newNotebook, callback) => {
   };
 };
 
+reducer.showNotes = (id)=>{
+    return (dispatch)=>{
+        dispatch(noteActionCreator.getNotes(id));
+    };
+};
+
+
 
 // Action creators
 /* *** TODO: Put action creators here *** */

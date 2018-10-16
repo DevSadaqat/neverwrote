@@ -1,10 +1,10 @@
 const React = require('react');
-
-
-const NoteView = require('./NoteView');
 const NoteEdit = require('./NoteEdit');
 
-class Note extends React.Component {
+/**
+ * A button which expands into a form for writing a new Note.
+ */
+class NoteNew extends React.Component {
   constructor(props) {
     super(props);
     // Set initial internal state for this component
@@ -20,40 +20,40 @@ class Note extends React.Component {
       this.setState({ editing: false });
     };
 
-     const saveEdit = (editedPost) => {
-      this.props.saveNote(editedPost, (err) => {
+    const createNote = (newNote) => {
+      this.props.createNote(newNote, (err) => {
         if(!err) closeEdit();
       });
     };
 
-    const deleteThisNote = () => {
-    this.props.deleteNote(this.props.Note.id);
+    const saveEdit = (editedNote) => {
+      this.props.saveNote(editedNote, (err) => {
+        if(!err) closeEdit();
+      });
     };
-
-
-    // TODO Section 8: Add code for delete
 
     if(this.state.editing) {
       // Render component for editing the Note
       return (
         <NoteEdit
           Note={this.props.Note}
-          onSave={saveEdit}
+           onSave={createNote}
           onCancel={closeEdit}
+          //on save = on Create
         />
       );
     }
-    // Render read-only view of the Note
-    // TODO Section 8: add code for delete
+    // TODO Section 7: Write code to switch to edit mode when editing is clicked
+
     return (
-      <NoteView
-        Note={this.props.Note}
-        onDelete={deleteThisNote}
-        onEdit={openEdit}
-      />
+      <button className="blog-load-more btn btn-primary btn-lg"
+        onClick={ openEdit }
+      >
+      Write Note here
+      </button>
+
     );
   }
 }
 
-// Export the Note component
-module.exports = Note;
+module.exports = NoteNew;
