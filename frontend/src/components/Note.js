@@ -37,7 +37,7 @@ class Note extends React.Component {
       // Render component for editing the Note
       return (
         <NoteEdit
-          Note={this.props.Note}
+          note={this.props.note}
           onSave={saveEdit}
           onCancel={closeEdit}
         />
@@ -47,7 +47,7 @@ class Note extends React.Component {
     // TODO Section 8: add code for delete
     return (
       <NoteView
-        Note={this.props.Note}
+        note={this.props.note}
         onDelete={deleteThisNote}
         onEdit={openEdit}
       />

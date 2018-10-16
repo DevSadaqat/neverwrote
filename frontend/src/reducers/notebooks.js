@@ -1,16 +1,20 @@
 const _ = require('lodash');
 const api = require('../helpers/api');
 
+const notesActionCreator = require('./notes');
+
 // Action type constants
 const INSERT = 'blog-frontend/Notebooks/INSERT';
 const CHANGE = 'blog-frontend/Notebooks/CHANGE';
 const REMOVE = 'blog-frontend/Notebooks/REMOVE';
 
+
 const initialState = {
   data: [
     { id: 100, title: 'From Redux Store: A hard-coded Notebook' },
     { id: 101, title: 'From Redux Store: Another hard-coded Notebook' },
-  ]
+  ],
+
 };
 
 // Function which takes the current data state and an action,
@@ -21,10 +25,8 @@ function reducer(state, action) {
 
   switch(action.type) {
     case INSERT: {
-
       // Add in the new Notebooks
-      const unsortedNotebooks = _.concat(state.data, action.Notebooks);
-
+      const unsortedNotebooks = _.concat(state.data, action.notebooks);
       const data = _.orderBy(unsortedNotebooks, 'createdAt','desc');
 
       // Return updated state
@@ -44,6 +46,7 @@ function reducer(state, action) {
         return _.assign({}, state, { data });
     }
 
+
     default: return state;
   }
 }
@@ -52,6 +55,7 @@ function reducer(state, action) {
 
 // Inserts Notebooks into the Notebook list
 reducer.insertNotebooks = (notebooks) => {
+
   return { type: INSERT, notebooks };
 };
 
@@ -64,6 +68,7 @@ reducer.removeNotebook = (id) => {
 reducer.changeNotebook = (notebook) => {
   return { type: CHANGE, notebook };
 };
+
 
 // Attempts to delete a Notebook from the server and removes it from the visible
 // Notebook list if successful
@@ -101,14 +106,14 @@ reducer.createNotebook = (newNotebook, callback) => {
       dispatch(reducer.insertNotebooks(notebook));
      // callback();
     }).catch(() => {
-      alert('Failed to create Notebook. Are all of the fields filled in correctly?');
+      alert('This error');
     });
   };
 };
 
 reducer.showNotes = (id)=>{
     return (dispatch)=>{
-        dispatch(noteActionCreator.getNotes(id));
+        dispatch(notesActionCreator.getNotes(id));
     };
 };
 

@@ -24,8 +24,7 @@ class NotebookEdit extends React.Component {
       event.preventDefault();
       // Creates a new Notebook object and saves it.
       const editedNotebook = _.assign({}, this.props.Notebook, {
-        title: this.state.title,
-        content: this.state.content
+        title: this.state.title
       });
       this.props.onSave(editedNotebook);
     };

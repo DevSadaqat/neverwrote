@@ -5,9 +5,22 @@ const api = require('../helpers/api');
 const INSERT = 'blog-frontend/notes/INSERT';
 const CHANGE = 'blog-frontend/notes/CHANGE';
 const REMOVE = 'blog-frontend/notes/REMOVE';
-const take_NOTES= 'take-notes';
+const GET_NOTES= 'take-notes';
+const SET_ACTIVE = 'blog-frontend/Notebooks/SET_ACTIVE';
 
-const initialState = {data: []};
+const initialState = {
+  data: [
+    {
+      id: 1,
+      title: 'New note',
+      content: 'Content',
+      notebookId: 1
+    }
+
+],
+activeNotebookId: -1
+
+};
 
 // Function which takes the current data state and an action,
 // and returns a new state
@@ -40,12 +53,12 @@ function reducer(state, action) {
         return _.assign({}, state, { data });
     }
 
-    case take_NOTES:{
-      const newState= _.assign({}, state, {data: action.notes});
-      return newState;
+    case GET_NOTES:{
+
+
+      return  _.assign({}, state, {activeNotebookId: action.id, data: action.notes});
 
     }
-
     default: return state;
   }
 }
@@ -98,7 +111,7 @@ reducer.saveNote = (editednote, callback) => {
 
 // Attempts to create a note on the server and inserts it into the local note
 // list if successful
-reducer.createNote = (newnote, callback) => {
+reducer.createNote = (newNote, callback) => {
   return (dispatch) => {
     api.post('/notes', newNote).then((note) => {
       // This note is one that the store returns us! It has note id incremented to the next available id
@@ -110,10 +123,10 @@ reducer.createNote = (newnote, callback) => {
   };
 };
 
-reducer.getNotes=(id)=>{
+reducer.getNotes = (id)=> {
   return (dispatch)=>{
     api.get('/notebooks/'+id + '/notes').then((notes)=>{
-      dispatch({type: GET_NOTES,notes});
+      dispatch({type: GET_NOTES,notes, id});
     }).catch(err=>alert(err.message));
   };
 };

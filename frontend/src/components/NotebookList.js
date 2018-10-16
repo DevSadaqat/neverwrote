@@ -5,6 +5,7 @@ const NotebookNew = require('./NotebookNew')
 
 const createActionDispatchers = require('../helpers/createActionDispatchers');
 const notebooksActionCreators = require('../reducers/notebooks');
+const notesActionCreators = require('../reducers/notes');
 
 /*
   *** TODO: Build more functionality into the NotebookList component ***
@@ -27,6 +28,7 @@ class NotebookList extends React.Component {
         title ={notebook.title}
         saveNotebook={this.props.saveNotebook}
         deleteNotebook={this.props.deleteNotebook}
+        showNotes={this.props.showNotes}
         />
       );
     };
@@ -38,7 +40,7 @@ class NotebookList extends React.Component {
             createNotebook={this.props.createNotebook}
           />
         <ul>
-        < a role="button"> {this.props.notebooks.data.map(createNotebookListItem)}</a>
+        {this.props.notebooks.data.map(createNotebookListItem)}
         </ul>
       </div>
     );
@@ -49,7 +51,7 @@ const NotebookListContainer = ReactRedux.connect(
   state => ({
     notebooks: state.notebooks
   }),
-  createActionDispatchers(notebooksActionCreators)
+  createActionDispatchers(notebooksActionCreators, notesActionCreators)
 )(NotebookList);
 
 module.exports = NotebookListContainer;

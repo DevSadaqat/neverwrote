@@ -20,8 +20,8 @@ class NoteNew extends React.Component {
       this.setState({ editing: false });
     };
 
-    const createNote = (newNote) => {
-      this.props.createNote(newNote, (err) => {
+    const createNote = (note) => {
+      this.props.createNote(note, (err) => {
         if(!err) closeEdit();
       });
     };
@@ -39,6 +39,7 @@ class NoteNew extends React.Component {
           Note={this.props.Note}
            onSave={createNote}
           onCancel={closeEdit}
+          notebookId={this.props.notebookId}
           //on save = on Create
         />
       );

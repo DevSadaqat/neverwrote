@@ -7,6 +7,10 @@ const moment = require('moment');
  * List of props: Notebook, time, onEdit, onDelete
  */
 const NotebookMeta = (props) => {
+
+
+
+
   return (
     <div className="blog-Notebook-meta">
 
@@ -29,10 +33,17 @@ const NotebookMeta = (props) => {
  * List of props: Notebook
  */
 const NotebookView = (props) => {
+  const showTheseNotes = ((event) => {
+      event.preventDefault();
+      props.showNotes(props.notebook.id);
+  });
+
   return (
     <li>
     <div className="blog-Notebook">
-      <h2 className="blog-Notebook-title" >{props.notebook.title}</h2>
+      <a onClick={showTheseNotes}>
+        <h2 className="blog-Notebook-title" >{props.notebook.title}</h2>
+      </a>
    <NotebookMeta {...props} />
     </div>
     </li>

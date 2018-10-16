@@ -7,6 +7,7 @@
 const React = require('react');
 
 const NotebookList = require('./NotebookList');
+const NoteList = require('./NoteList');
 
 /*
   *** TODO: Start building the frontend from here ***
@@ -20,6 +21,7 @@ const Home = () => (
       Never say "I never wrote that down" ever again!
     </p>
     <NotebookList />
+    <NoteList />
   </div>
 );
 

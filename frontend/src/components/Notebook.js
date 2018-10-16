@@ -50,6 +50,7 @@ class Notebook extends React.Component {
         notebook={this.props.notebook}
         onDelete={deleteThisNotebook}
         onEdit={openEdit}
+        showNotes={this.props.showNotes}
       />
     );
   }

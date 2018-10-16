@@ -7,10 +7,10 @@ const _ = require('lodash');
 class NoteEdit extends React.Component {
   constructor(props) {
     super(props);
-    const Note = props.Note || {};
+    const note = props.note || {};
 
     this.state = {
-      title: Note.title || ''
+      title: note.title || ''
     };
   }
 
@@ -23,9 +23,10 @@ class NoteEdit extends React.Component {
     const submitAndStopEditing = (event) => {
       event.preventDefault();
       // Creates a new Note object and saves it.
-      const editedNote = _.assign({}, this.props.Note, {
+      const editedNote = _.assign({}, this.props.note, {
         title: this.state.title,
-        content: this.state.content
+        content: this.state.content,
+        notebookId: this.props.notebookId
       });
       this.props.onSave(editedNote);
     };
