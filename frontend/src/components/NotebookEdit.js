@@ -45,16 +45,11 @@ class NotebookEdit extends React.Component {
 
         {/* Save button */}
         <button className="btn btn-default pull-right"
-          onClick={submitAndStopEditing}
-        >
-          Save
-        </button>
+          onClick={submitAndStopEditing}>Save</button>
         {/* Cancel button */}
         <button className="btn btn-default pull-right"
           style={{ marginRight: '12px' }}
-          onClick={revertAndStopEditing}
-        >
-          Cancel
+          onClick={revertAndStopEditing}>Cancel
         </button>
       </form>
     );

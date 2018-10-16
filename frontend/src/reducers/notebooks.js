@@ -33,8 +33,8 @@ function reducer(state, action) {
       // Changes a single Notebook's data in the local store
     case CHANGE: {
       const data = _.clone(state.data);
-      const changedIndex = _.findIndex(state.data, {id: action.Notebook.id })
-      data[changedIndex] = action.Notebook;
+      const changedIndex = _.findIndex(state.data, {id: action.notebook.id })
+      data[changedIndex] = action.notebook;
       return _.assign({}, state, { data });
     }
 
@@ -60,14 +60,18 @@ reducer.removeNotebook = (id) => {
   return { type: REMOVE, id };
 };
 
+// Changes local Notebook data
+reducer.changeNotebook = (notebook) => {
+  return { type: CHANGE, notebook };
+};
+
 // Attempts to delete a Notebook from the server and removes it from the visible
 // Notebook list if successful
-reducer.deleteNotebook = (NotebookId) => {
+reducer.deleteNotebook = (notebookId) => {
    return (dispatch) => {
-    api.delete('/..NotebookId' + NotebookId).then((notebook) => {
+    api.delete('/notebooks/' + notebookId).then((notebook) => {
       // deletes local Notebook.
-      dispatch(reducer.removeNotebook(NotebookId));
-      callback();
+      dispatch(reducer.removeNotebook(notebookId));
     }).catch(() => {
       alert('Failed to delete Notebook');
     });
@@ -92,20 +96,17 @@ reducer.saveNotebook = (editedNotebook, callback) => {
 // list if successful
 reducer.createNotebook = (newNotebook, callback) => {
   return (dispatch) => {
-    api.post('/notebooks', newNotebook).then((post) => {
+    api.post('/notebooks', newNotebook).then((notebook) => {
       // This Notebook is one that the store returns us! It has Notebook id incremented to the next available id
-      dispatch(reducer.insertNotebooks([notebook]));
-      callback();
+      dispatch(reducer.insertNotebooks(notebook));
+     // callback();
     }).catch(() => {
       alert('Failed to create Notebook. Are all of the fields filled in correctly?');
     });
   };
 };
 
-// Changes local Notebook data
-reducer.changeNotebook = (notebook) => {
-  return { type: CHANGE, notebook };
-};
+
 // Action creators
 /* *** TODO: Put action creators here *** */
 

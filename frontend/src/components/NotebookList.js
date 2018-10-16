@@ -38,7 +38,7 @@ class NotebookList extends React.Component {
             createNotebook={this.props.createNotebook}
           />
         <ul>
-          {this.props.notebooks.data.map(createNotebookListItem)}
+        < a role="button"> {this.props.notebooks.data.map(createNotebookListItem)}</a>
         </ul>
       </div>
     );

@@ -10,13 +10,13 @@ const NotebookMeta = (props) => {
   return (
     <div className="blog-Notebook-meta">
 
-
-      {<a role="button" title="Edit Notebook"
+       {<a role="button" title="Delete Notebook"
         style={{ paddingRight: '8px' }}
-        onClick={ props.onEdit }
+        onClick={ props.onDelete }
       >
         <span className="fa fa-remove" />
       </a>}
+
     </div>
   );
 };
@@ -30,13 +30,12 @@ const NotebookMeta = (props) => {
  */
 const NotebookView = (props) => {
   return (
+    <li>
     <div className="blog-Notebook">
-      <h2 className="blog-Notebook-title">{props.notebook.title}</h2>
-
-     <NotebookMeta {...props} />
-
-      <p className = "blog-Notebook-content">{props.notebook.content}</p>
+      <h2 className="blog-Notebook-title" >{props.notebook.title}</h2>
+   <NotebookMeta {...props} />
     </div>
+    </li>
   );
 };
 

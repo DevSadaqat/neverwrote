@@ -2,6 +2,7 @@ const React = require('react');
 
 
 const NotebookView = require('./NotebookView');
+const NotebookEdit = require('./NotebookEdit');
 
 class Notebook extends React.Component {
   constructor(props) {
@@ -19,15 +20,14 @@ class Notebook extends React.Component {
       this.setState({ editing: false });
     };
 
-    const saveEdit = (editedNotebook) => {
-      this.props.saveNotebook(editedNotebook, (err) => {
+     const saveEdit = (editedPost) => {
+      this.props.saveNotebook(editedPost, (err) => {
         if(!err) closeEdit();
       });
     };
 
-
     const deleteThisNotebook = () => {
-    this.props.deleteNotebook(this.props.Notebook.id);
+    this.props.deleteNotebook(this.props.notebook.id);
     };
 
 
@@ -37,7 +37,7 @@ class Notebook extends React.Component {
       // Render component for editing the Notebook
       return (
         <NotebookEdit
-          post={this.props.post}
+          notebook={this.props.notebook}
           onSave={saveEdit}
           onCancel={closeEdit}
         />
