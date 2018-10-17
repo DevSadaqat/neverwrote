@@ -42,11 +42,11 @@ class NotebookEdit extends React.Component {
           />
         </div>
 
-        {/* Save button */}
-        <button className="btn btn-default pull-right"
+        {/* button to save the note */}
+        <button className="btn btn-success pull-right"
           onClick={submitAndStopEditing}>Save</button>
-        {/* Cancel button */}
-        <button className="btn btn-default pull-right"
+        {/*  button to cancel the note */}
+        <button className="btn btn-danger pull-right"
           style={{ marginRight: '12px' }}
           onClick={revertAndStopEditing}>Cancel
         </button>

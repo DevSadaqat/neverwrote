@@ -14,7 +14,7 @@ const NoteMeta = (props) => {
         style={{ paddingRight: '8px' }}
         onClick={ props.onDelete }
       >
-        <span className="fa fa-remove" />
+        <span class="fa fa-trash" />
       </a>}
 
     </div>
@@ -28,16 +28,34 @@ const NoteMeta = (props) => {
  *
  * List of props: Note
  */
-const NoteView = (props) => {
+const NoteContent =(props) =>{
+  return <p>{props.content}</p>;
+}
+class  NoteView extends React.Component  {
+    constructor(props) {
+      super(props);
+      this.state={open:false};
+      this.handleContent=this.handleContent.bind(this);
+    }
+
+   handleContent(){
+     const toggle= !this.state.open;
+     this.setState({open:toggle})
+  }
+  render() {
   return (
     <li>
     <div className="blog-Note">
-      <h2 className="blog-Note-title" >{props.note.title}</h2>
-   <NoteMeta {...props} />
+      <a className="blog-Note-title" role='button' onClick={this.handleContent}>{this.props.note.title}</a>
+      {this.state.open && <NoteContent content={this.props.note.content}/>}
+   <NoteMeta {...this.props} />
 
     </div>
     </li>
   );
+  }
 };
+
+
 
 module.exports = NoteView;

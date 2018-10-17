@@ -29,6 +29,7 @@ class NoteEdit extends React.Component {
         content: this.state.content,
         notebookId: this.props.notebookId
       });
+
       this.props.onSave(editedNote);
     };
 
@@ -39,30 +40,29 @@ class NoteEdit extends React.Component {
     const onContentChange = (event) => {
       this.setState({ content: event.target.value });
     };
+
+
     return (
       <form className="Note">
         {/* Title field */}
         <div className="form-group">
           <input className="form-control input-lg" value={this.state.title}
             placeholder="Note title" onChange={onTitleChange}
+
           />
         </div>
         {/* Content field */}
         <div  className="form-group">
-        <textarea
-         className="form-control"
-         style={{ height: 300 }}
-         MarkdownEditor value={this.state.content} placeholder="Note Content" onChange={onContentChange}
-         />
+       <MarkdownEditor value={this.state.content} onChange={onContentChange}/>
 
          </div>
 
 
         {/* Save button */}
-        <button className="btn btn-default pull-right"
+        <button className="btn btn-success pull-right"
           onClick={submitAndStopEditing}>Save</button>
         {/* Cancel button */}
-        <button className="btn btn-default pull-right"
+        <button className="btn btn-danger pull-right"
           style={{ marginRight: '12px' }}
           onClick={revertAndStopEditing}>Cancel </button>
       </form>

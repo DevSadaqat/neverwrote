@@ -4,9 +4,9 @@ const api = require('../helpers/api');
 const notesActionCreator = require('./notes');
 
 // Action type constants
-const INSERT = 'blog-frontend/Notebooks/INSERT';
-const CHANGE = 'blog-frontend/Notebooks/CHANGE';
-const REMOVE = 'blog-frontend/Notebooks/REMOVE';
+const INSERT = 'INSERT';
+const CHANGE = 'CHANGE';
+const REMOVE = 'REMOVE';
 
 
 const initialState = {
