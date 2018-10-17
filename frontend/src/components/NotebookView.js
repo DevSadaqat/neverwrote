@@ -8,9 +8,7 @@ const moment = require('moment');
  */
 const NotebookMeta = (props) => {
 
-
-
-
+//button to delete notes
   return (
     <div className="blog-Notebook-meta">
 
@@ -45,6 +43,7 @@ const NotebookView = (props) => {
         <h2 className="blog-Notebook-title" >{props.notebook.title}</h2>
       </a>
    <NotebookMeta {...props} />
+
     </div>
     </li>
   );

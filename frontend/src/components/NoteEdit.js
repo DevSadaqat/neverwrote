@@ -1,7 +1,8 @@
 const React = require('react');
 const _ = require('lodash');
+const MarkdownEditor = require('./MarkdownEditor');
 
-/**
+/*input className="form-control input-lg"*
  * A form for editing a Note.
  */
 class NoteEdit extends React.Component {
@@ -35,6 +36,9 @@ class NoteEdit extends React.Component {
       this.setState({ title: event.target.value });
     };
 
+    const onContentChange = (event) => {
+      this.setState({ content: event.target.value });
+    };
     return (
       <form className="Note">
         {/* Title field */}
@@ -43,6 +47,16 @@ class NoteEdit extends React.Component {
             placeholder="Note title" onChange={onTitleChange}
           />
         </div>
+        {/* Content field */}
+        <div  className="form-group">
+        <textarea
+         className="form-control"
+         style={{ height: 300 }}
+         MarkdownEditor value={this.state.content} placeholder="Note Content" onChange={onContentChange}
+         />
+
+         </div>
+
 
         {/* Save button */}
         <button className="btn btn-default pull-right"
@@ -50,8 +64,7 @@ class NoteEdit extends React.Component {
         {/* Cancel button */}
         <button className="btn btn-default pull-right"
           style={{ marginRight: '12px' }}
-          onClick={revertAndStopEditing}>Cancel
-        </button>
+          onClick={revertAndStopEditing}>Cancel </button>
       </form>
     );
   }

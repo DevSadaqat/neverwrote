@@ -27,7 +27,7 @@ class Note extends React.Component {
     };
 
     const deleteThisNote = () => {
-    this.props.deleteNote(this.props.Note.id);
+    this.props.deleteNote(this.props.note.id);
     };
 
 

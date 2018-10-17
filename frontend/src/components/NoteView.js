@@ -34,6 +34,7 @@ const NoteView = (props) => {
     <div className="blog-Note">
       <h2 className="blog-Note-title" >{props.note.title}</h2>
    <NoteMeta {...props} />
+
     </div>
     </li>
   );
