@@ -8,7 +8,7 @@ class Notebook extends React.Component {
   constructor(props) {
     super(props);
     // Set initial internal state for this component
-    this.state = { editing: false };
+    this.state = { editing: false, };
   }
 
   render() {

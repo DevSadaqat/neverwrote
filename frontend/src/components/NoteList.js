@@ -31,6 +31,7 @@ class NoteList extends React.Component {
       );
     };
 
+    if (this.props.notes.activeNotebookId != -1) {
     return (
       <div>
         <h2>Notes</h2>
@@ -44,7 +45,13 @@ class NoteList extends React.Component {
       </div>
     );
   }
-}
+  else return (<div></div>);
+  }
+ }
+
+
+
+
 
 const NoteListContainer = ReactRedux.connect(
   state => ({

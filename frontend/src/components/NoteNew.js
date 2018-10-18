@@ -22,7 +22,7 @@ class NoteNew extends React.Component {
 
     const createNote = (note) => {
       this.props.createNote(note, (err) => {
-        if(!err) closeEdit();
+        if(!err || err == undefined) closeEdit();
       });
     };
 

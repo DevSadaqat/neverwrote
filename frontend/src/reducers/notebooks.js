@@ -14,7 +14,6 @@ const initialState = {
     { id: 100, title: 'From Redux Store: A hard-coded Notebook' },
     { id: 101, title: 'From Redux Store: Another hard-coded Notebook' },
   ],
-
 };
 
 // Function which takes the current data state and an action,
@@ -104,7 +103,7 @@ reducer.createNotebook = (newNotebook, callback) => {
     api.post('/notebooks', newNotebook).then((notebook) => {
       // This Notebook is one that the store returns us! It has Notebook id incremented to the next available id
       dispatch(reducer.insertNotebooks(notebook));
-     // callback();
+     callback();
     }).catch(() => {
       alert('This error');
     });

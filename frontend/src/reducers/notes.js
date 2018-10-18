@@ -10,15 +10,15 @@ const SET_ACTIVE = 'blog-frontend/Notebooks/SET_ACTIVE';
 
 const initialState = {
   data: [
-    {
-      id: 1,
-      title: 'New note',
-      content: 'Content',
-      notebookId: 1
-    }
+    // {
+    //   id: 1,
+    //   title: 'New note',
+    //   content: 'Content',
+    //   notebookId: 1
+    // }
 
 ],
-activeNotebookId: -1
+ activeNotebookId: -1
 
 };
 
@@ -116,7 +116,7 @@ reducer.createNote = (newNote, callback) => {
     api.post('/notes', newNote).then((note) => {
       // This note is one that the store returns us! It has note id incremented to the next available id
       dispatch(reducer.insertNotes(note));
-     // callback();
+      callback();
     }).catch(() => {
       alert('Failed to create note. Are all of the fields filled in correctly?');
     });
