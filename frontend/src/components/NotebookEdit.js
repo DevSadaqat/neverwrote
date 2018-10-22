@@ -43,8 +43,7 @@ class NotebookEdit extends React.Component {
         </div>
 
         {/* button to save the note */}
-        <button className="btn btn-success pull-right"
-          onClick={submitAndStopEditing}>Save</button>
+        <button onClick={submitAndStopEditing} className="btn btn-success pull-right"><i className="fa fa-check"></i></button>
         {/*  button to cancel the note */}
         <button className="btn btn-danger pull-right"
           style={{ marginRight: '12px' }}

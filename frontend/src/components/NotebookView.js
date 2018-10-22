@@ -26,7 +26,7 @@ const NotebookMeta = (props) => {
 /**
  * A read-only view  Notebook.
  * This is a stateless functional component.
- * It takes props as its args and returns what the render method would return.
+ * It takes props as its args and returns what   <button onClick={submitAndStopEditing} className="btn btn-success pull-right"><i className="fa fa-check"></i></button>the render method would return.
  *
  * List of props: Notebook
  */

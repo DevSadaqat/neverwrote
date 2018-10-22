@@ -46,7 +46,7 @@ class NotebookNew extends React.Component {
     // TODO Section 7: Write code to switch to edit mode when editing is clicked
 
     return (
-      <button className="button1"
+      <button className="blog-load-more btn btn-primary btn-lg"
         onClick={ openEdit }
       >
       Write Notebook here

@@ -47,7 +47,8 @@ class  NoteView extends React.Component  {
   return (
     <li>
     <div className="blog-Note">
-      <a className="blog-Note-title" role='button' onClick={this.handleContent}>{this.props.note.title}</a>
+      <a className="blog-Note-title" role='button' onClick={this.handleContent}>
+        {this.props.note.title}</a>
       {this.state.open && <NoteContent content={this.props.note.content}/>}
    <NoteMeta {...this.props} />
     </div>

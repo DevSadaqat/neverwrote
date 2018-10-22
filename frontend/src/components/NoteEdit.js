@@ -59,8 +59,7 @@ class NoteEdit extends React.Component {
 
 
         {/* Save button */}
-        <button className="btn btn-success pull-right"
-          onClick={submitAndStopEditing}>Save</button>
+         <button onClick={submitAndStopEditing} className="btn btn-success pull-right"><i className="fa fa-check"></i></button>
         {/* Cancel button */}
         <button className="btn btn-danger pull-right"
           style={{ marginRight: '12px' }}
