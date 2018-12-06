@@ -10,7 +10,7 @@ const NotebookMeta = (props) => {
 
 //button to delete notes
   return (
-    <div className="blog-Notebook-meta">
+    <span className="blog-Notebook-meta">
 
        {<a role="button" title="Delete Notebook"
         style={{ paddingRight: '8px' }}
@@ -19,7 +19,7 @@ const NotebookMeta = (props) => {
         <span className="fa fa-remove" />
       </a>}
 
-    </div>
+    </span>
   );
 };
 
@@ -40,9 +40,11 @@ const NotebookView = (props) => {
     <li>
     <div className="blog-Notebook">
       <a onClick={showTheseNotes}>
-        <h2 className="blog-Notebook-title" >{props.notebook.title}</h2>
+        <h2 className="blog-Notebook-title" >{props.notebook.title}
+          <NotebookMeta {...props} />
+        </h2>
       </a>
-   <NotebookMeta {...props} />
+
 
     </div>
     </li>

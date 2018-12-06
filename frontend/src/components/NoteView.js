@@ -8,7 +8,7 @@ const moment = require('moment');
  */
 const NoteMeta = (props) => {
    return (
-    <div className="blog-Note-meta">
+    <span className="blog-Note-meta">
 
        {<a role="button" title="Delete Note"
         style={{ paddingRight: '8px' }}
@@ -17,7 +17,7 @@ const NoteMeta = (props) => {
         <span className="fa fa-remove" />
       </a>}
 
-    </div>
+    </span>
   );
 
 };
@@ -48,10 +48,11 @@ class  NoteView extends React.Component  {
     <li>
     <div className="blog-Note">
       <a role='button' onClick={this.handleContent}>
-      <h3 className="blog-Note-title" >  {this.props.note.title} </h3>
+      <h3 className="blog-Note-title" >  {this.props.note.title}
+        <NoteMeta {...this.props} /> </h3>
        </a>
       {this.state.open && <NoteContent content={this.props.note.content}/>}
-   <NoteMeta {...this.props} />
+
     </div>
     </li>
   );
