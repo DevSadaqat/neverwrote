@@ -1,12 +1,4 @@
-# CSE2WDC/CSE5WDC Assignment: Neverwrote
 
-This repository contains a template which should form the foundation of your
-assignment.
-
-## Getting started
-
-1. Create a private fork of this repository on Bitbucket
-2. Clone your fork of the repository and start coding
 
 ## Command reference
 
